@@ -11,9 +11,11 @@ public class RealBank implements Bank {
 
     public RealBank() {
         accounts = new HashMap<>();
-        accounts.put("12345", 1000.0);
-        accounts.put("23456", 2000.0);
-        accounts.put("34567", 3000.0);
+    }
+
+    @Override
+    public void insertAccount(String id, double amount) {
+        accounts.put(id, amount);
     }
 
     @Override

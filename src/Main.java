@@ -1,10 +1,13 @@
 import Interfaz.Bank;
 import Proxy.BankProxy;
 
-
 public class Main {
     public static void main(String[] args) {
         Bank bank = new BankProxy();
+
+        bank.insertAccount("12345", 1000.0);
+        bank.insertAccount("23456", 2000.0);
+        bank.insertAccount("34567", 3000.0);
 
         // Consulta el saldo de la cuenta "12345"
         double balance = bank.getBalance("12345");

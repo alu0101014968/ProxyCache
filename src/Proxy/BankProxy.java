@@ -15,6 +15,13 @@ public class BankProxy implements Bank {
         cache = new HashMap<>();
     }
 
+    public void insertAccount(String id, double amount) {
+        if (realBank == null) {
+            realBank = new RealBank();
+        }
+        realBank.insertAccount(id, amount);
+    }
+
     @Override
     public void withdraw(String account, double amount) {
         if (realBank == null) {
