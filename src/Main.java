@@ -18,6 +18,11 @@ public class Main {
         balance = bank.getBalance("12345");
         System.out.println("Account Balance 12345: " + balance);
 
+        // Realiza una retirada de 10000 de la cuenta "12345"
+        bank.withdraw("12345", 10000);
+        balance = bank.getBalance("12345");
+        System.out.println("Account Balance 12345: " + balance);
+
         // Realiza una retirada de 1000 de la cuenta "12345"
         bank.withdraw("12345", 1000);
         balance = bank.getBalance("12345");
@@ -25,7 +30,7 @@ public class Main {
 
         // Consulta el saldo de la cuenta "23456"
         balance = bank.getBalance("23456");
-        System.out.println("Account Balance 23456: " + balance);
+        System.out.println("\nAccount Balance 23456: " + balance);
     }
 }
 

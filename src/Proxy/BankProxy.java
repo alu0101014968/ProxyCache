@@ -3,6 +3,7 @@ package Proxy;
 import Interfaz.Bank;
 import Service.RealBank;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 public class BankProxy implements Bank {
     private RealBank realBank;
     private Map<String, Double> cache;
+    private final static String COLOR = "\u001B[31m";
 
     public BankProxy() {
         cache = new HashMap<>();
@@ -27,7 +29,10 @@ public class BankProxy implements Bank {
         if (realBank == null) {
             realBank = new RealBank();
         }
+        getDate();
+        System.out.println("   INFO:  ----BankProxy - Get Money----  Getting " + amount + "\u001B[0m");
         realBank.withdraw(account, amount);
+        cache.put(account, realBank.getAccounts().get(account));
     }
 
     @Override
@@ -35,7 +40,10 @@ public class BankProxy implements Bank {
         if (realBank == null) {
             realBank = new RealBank();
         }
+        getDate();
+        System.out.println("   INFO:  ----BankProxy - Deposit Money----  Depositing " + amount + "\u001B[0m");
         realBank.deposit(account, amount);
+        cache.put(account, realBank.getAccounts().get(account));
     }
 
     @Override
@@ -50,5 +58,10 @@ public class BankProxy implements Bank {
             cache.put(account, balance);
             return balance;
         }
+    }
+
+    private void getDate() {
+        Date date = new Date();
+        System.out.print(COLOR + date);
     }
 }

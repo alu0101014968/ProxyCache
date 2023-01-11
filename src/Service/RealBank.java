@@ -24,12 +24,12 @@ public class RealBank implements Bank {
             double balance = accounts.get(account);
             if (balance >= amount) {
                 accounts.put(account, balance - amount);
-                System.out.println("Retirada realizada con éxito");
+                System.out.println("Withdrawal completed successfully");
             } else {
-                System.out.println("Saldo insuficiente");
+                System.out.println("Insufficient balance");
             }
         } else {
-            System.out.println("Cuenta inexistente");
+            System.out.println("Nonexistent account");
         }
     }
 
@@ -38,19 +38,19 @@ public class RealBank implements Bank {
         if (accounts.containsKey(account)) {
             double balance = accounts.get(account);
             accounts.put(account, balance + amount);
-            System.out.println("Depósito realizado con éxito");
+            System.out.println("Deposit made successfully");
         } else {
-            System.out.println("Cuenta inexistente");
+            System.out.println("Nonexistent account");
         }
     }
 
     @Override
     public double getBalance(String account) {
-        if (accounts.containsKey(account)) {
-            return accounts.get(account);
-        } else {
-            return 0.0;
-        }
+        return accounts.getOrDefault(account, 0.0);
+    }
+
+    public Map<String, Double> getAccounts() {
+        return accounts;
     }
 }
 
